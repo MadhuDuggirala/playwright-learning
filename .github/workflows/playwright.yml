@@ -18,11 +18,11 @@ jobs:
     steps:
       # 1. Download source code from GitHub
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # 2. Install Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
 
@@ -50,7 +50,7 @@ jobs:
       # 7. Upload Playwright HTML report
       - name: Upload Playwright report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: playwright-report/
@@ -59,8 +59,11 @@ jobs:
       # 8. Upload Cucumber HTML report
       - name: Upload Cucumber report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
           name: cucumber-report
           path: cucumber-report.html
           retention-days: 30
